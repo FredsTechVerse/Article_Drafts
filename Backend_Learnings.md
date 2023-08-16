@@ -1,27 +1,12 @@
-# FIREBASE DEPLOYMENT OF EXPRESS APPLICATION.
 
-This project is a guide to deploying an Express app using Firebase Functions.
+## MONGOOSE OPERATORS
 
-# ELIMU HUB BACKEND
-
-- Where we make revision easy and fun!
-
-## TO DO
-
-- User should not be able to update password until proper protocol for authentication , decryption and encryption after update is followed
-- Swap most of the let with const in the db especially where we append the data once
-
-#### MONGOOSE OPERATORS
-
-A way for us to interact with our data stored in a bucket , the database.
-
+- A way for us to interact with our data stored in the database directly and in a precise manner.
 - Enables us to conveniently issue instructions to the db in a precise yet shorter way.
-- This operators are used as key value pairs where the key is the operator and the value is the value to be used in the operation. eg `Inventory.find({"quantity": { $gt: 5000}})`
-- Not to forget that the operator is preceded by a dollar sign.
-- They will go a long away in aiding in precision query. Eg the pull operator manipulates the database directly while removing token.
-- Be careful with the order of the operator and key!
+- This operators are used as a  key value pairs where the key is the operator and the value is the value to be used in the operation and is preceded with a dollar sign. eg `Inventory.find({"quantity": { $gt: 5000}})`
+- Sometimes , the operator comes before the database key and in other cases it comes after it as in the example above...eg for a pull operation we can have `Inventory.find({$pull:{"quantity": 5000}})`
 
-#### A DEEPER DIVE INTO THE S3 BUCKET
+## A DEEPER DIVE INTO THE S3 BUCKET
 
 - Bucket policies, ACLs, and IAM policies provide various ways to control access to S3 buckets and their objects
 - The "Block Public Access" checkbox is a master switch that overrides these permissions and blocks all public access when enabled.
@@ -29,7 +14,7 @@ A way for us to interact with our data stored in a bucket , the database.
 - Error messages are quite sleek. We get to know the error by the first line then additional found in the $metadataObject... All in betweeen is whining about where the error could be .
 - CORS (Cross origin resource sharing) - Simply involves two domains talking to each other and that is why we have the CORS policy you know and the CORS configuration in the index.js you know , incase another domain wants to access our resources eg the way the frontend is accessing resources in the backend which are on two different domains.
 
-#### DEFINATIONS
+#### KEY DEFINATIONS
 
 **_ Policy _** - This is a JSON document that defines who has access and explicitly states to which resources they have access to and what actions they can perform on those resources.
 **_Statement_**- This is a JSON block [Array so can contain multiple objects] that contains the permissions being granted / denied as well us conditions (optional) associated with the permissions.
@@ -127,14 +112,14 @@ To summarize, thE bucket policy allows any user (represented by "\_") to perform
 - Youtube api scope is like policy in aws.
 - I have a unified response body where i send a message `   res.status(200).json({ message: "Course deleted successfully" });` or the actual file if need arises `res.json(courseData);`
 
-### WORKING WITH ENVIROMENT VARIABLES
+## WORKING WITH ENVIROMENT VARIABLES
 
 1. Exclude apostrophes when defining string values,they will be placed automatically when the varibale is needed
 2. KEY must always be writtend in capital letters underscore separated if need be.
 3. Import dotenv in the root route... After this we do not need to import it again as it will already have served its purpose of loading the enviroment variables into the process.env object. This is only done locally hence using the following code
    `if (process.env.NODE_ENV !== "production") { require("dotenv").config();}`
 
-### WORKING WITH THE AWS SDK
+## WORKING WITH THE AWS SDK
 
 - Things have been harmnized and made simple where there is a common pattern to this operations :-
 
@@ -152,9 +137,6 @@ To summarize, thE bucket policy allows any user (represented by "\_") to perform
 
 - Let us consume utilize jwt effectively by using the user data harnessed if possible instead of passing it manually.
 
-## OPTIMIZATIONS
-
-- Refactor auth controllers futher by passing the role ... Do this optimization , make sure they work properly... Then see how we can even improve perfomance using react hook forms.
 
 ## BACKEND TIPS
 
