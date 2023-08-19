@@ -1,0 +1,2 @@
+
+- **_Cluster_** Its simply a group of computers that can host serveral database(s) with a limit to not the no of databases it can hold but the total number collections and space that they can take up!
